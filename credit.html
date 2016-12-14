@@ -1,0 +1,80 @@
+<?php
+//if "email" variable is filled out, send email
+  if (isset($_REQUEST['email']))  {
+  
+  //Email information
+  $admin_email = "chronicle@gmail.com";
+  $email = $_REQUEST['email'];
+  $subject = $_REQUEST['subject'];
+  $comment = $_REQUEST['comment'];
+  $name = $_REQUEST['name'];
+  
+  //send email
+  mail($admin_email, "$name", $comment, "$subject", "From:" . $email);
+  
+<!--  //Email response-->
+<!--  echo "<p id='response'>Thank you for contacting us!</p>";-->
+<!--  }-->
+  
+<!--  //if "email" variable is not filled out, display the form-->
+<!--  else  {-->
+<!--?>-->
+
+
+  
+<?php
+  }
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="credit.css" type="text/css" />
+        <link rel="stylesheet" href="main.css" type="text/css" />
+        <script type="text/javascript" src="main.js"></script>
+    </head>
+    <body>
+        <header>
+            
+        </header>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+        </div>
+        <main>
+            <form method="post">
+                <fieldset>
+                    <div>
+                        <label for="credit-card">Credit Card Number:</label>
+                        <input id="credit-card" type="text" autocomplete="off" name="comment"/>
+                        <label for="name">Name On Card:</label>
+                        <input type="text" name="name"/>
+                        <label>CVC:</label>
+                        <input type="text" onkeypress="return isNumberKey(event)" maxlength="3" id="cvc" /> 
+                        <label>Expiration Date:</label>
+                        <input type="text" onkeypress="return isNumberKey(event)" maxlength="4" id="date" /> 
+                        <label for="email">Email(to send your receipt to):</label>
+                        <input name="email" type="text"     />
+                        <input type="submit" value="Submit" id="submit"/>
+                    </div>
+                </fieldset>
+            </form>
+        </main>
+    </body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript">
+	    $(document).ready(function() {
+            setTimeout(function(){
+                $('body').addClass('loaded');
+            }, 3000);
+         
+        });
+        function isNumberKey(evt){
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }    
+	</script>
+</html>
